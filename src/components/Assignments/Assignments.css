@@ -1,0 +1,90 @@
+.assignments-cards-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+}
+.assignment-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #bbb;
+    color: #333;
+    width: 23%;
+    margin: 20px 1%;
+    padding: 20px 30px;
+    text-align: center;
+}
+.gold-day-assignment {
+    background-color: var(--gold);
+}
+.blue-day-assignment {
+    background-color: var(--fadedBlue);
+}
+.assignment-name {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.assignment-name a {
+    text-decoration: none;
+}
+.assignment-name a:hover {
+    color: var(--blue);
+}
+.assignment-info-container {
+    flex: 1;
+    margin-bottom: 10px;
+}
+.gold-day-assignment .show-info {
+    background: #bbb;
+}
+.blue-day-assignment .show-info {
+    background: #bbb;
+}
+.gray-border {
+    border: 2px solid #444;
+    background: #fff;
+}
+.completed-button {
+    width: 100%;
+    border: 0;
+    text-align: center;
+    height: 2rem;
+}
+.gold-day-assignment .completed-button,
+.gold-day-assignment .confirmation-message {
+    background: var(--blue);
+    color: var(--gold);
+}
+.blue-day-assignment .completed-button,
+.blue-day-assignment .confirmation-message {
+    background: var(--gold);
+    color: var(--blue);
+}
+.confirmation-buttons-container {
+    display: flex;
+}
+.confirmation-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 0;
+    height: 2rem;
+    flex: 2;
+    font-size: .9rem;
+}
+.completed-check-button {
+    flex: 1;
+    border: 0;
+    height: 2rem;
+}
+.confirm-button {
+    background: #bbb;
+    color: #333;
+}
+.cancel-button {
+    background: #333;
+    color: #bbb;
+}

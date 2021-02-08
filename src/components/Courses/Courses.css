@@ -1,0 +1,94 @@
+:root {
+    --gold: #e6be1e;
+    --blue: #1e73be;
+    --fadedGold: rgba(230, 190, 30, .1);
+    --fadedBlue: rgba(30, 115, 190, .5);
+    --green: #1ee650;
+    --red: #e6501e;
+}
+.courses-container {
+    display: flex;
+    width: 100%;
+}
+.blue-courses,
+.gold-courses {
+    display: flex;
+    width: 50%;
+}
+.course-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    width: 23%;
+    margin: 20px 1%;
+    transition: 0.1s linear;
+    text-align: center;
+}
+.course-card:hover {
+    transform: scale(1.1);
+    box-shadow: 10px 5px 5px #ddd;
+}
+.gold-day {
+    border: 5px solid var(--gold);
+}
+.blue-day {
+    border: 5px solid var(--blue);
+}
+.course-card.gold-day:hover {
+    background-color: var(--fadedGold);
+    color: var(--gold);
+}
+.course-card.blue-day:hover {
+    background-color: var(--fadedBlue);
+    color: var(--blue);
+}
+.gold-day,
+.blue-day,
+.course-card a,
+.assignments-cards-container a {
+    color: #333;
+    opacity: .8;
+    text-decoration: none;
+}
+.course-title {
+    font-size: 1.2vw;
+    display: flex;
+    justify-content: space-evenly;
+    background: #333;
+    color: #ddd;
+}
+.course-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 10px;
+}
+.course-info div {
+    min-height: 30px;
+}
+.period {
+    font-weight: 800;
+}
+.courses-container a {
+    color: #333;
+}
+.courses-container .gold-day a:hover {
+    color: var(--gold);
+}
+.courses-container .blue-day a:hover {
+    color: var(--blue);
+}
+
+@media screen and (max-width: 992px) {
+    .courses-container {
+        flex-direction: column;
+    }
+    .blue-courses,
+    .gold-courses {
+        width: 100%;
+    }
+}

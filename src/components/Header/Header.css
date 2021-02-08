@@ -1,0 +1,9 @@
+header {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.2vw;
+    font-weight: 600;
+    color: #ddd;
+    background: #333;
+    padding: 10px;
+}
