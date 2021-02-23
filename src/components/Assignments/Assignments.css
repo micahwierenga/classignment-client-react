@@ -22,6 +22,9 @@
 .blue-day-assignment {
     background-color: var(--fadedBlue);
 }
+.assignment-card > div {
+    margin-top: 15px;
+}
 .assignment-name {
     font-weight: 700;
     font-size: 1.5rem;
@@ -35,16 +38,33 @@
 .assignment-info-container {
     flex: 1;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+}
+.assignment-info-container.show-info {
+    flex-direction: column;
+}
+.assignment-info-groups {
+    display: flex;
+    justify-content: space-around;
+}
+.assignment-subheading {
+    font-weight: 700;
+}
+.assignment-info {
+    font-size: 32px;
+    font-weight: 700;
 }
 .gold-day-assignment .show-info {
     background: #bbb;
+    padding: 20px;
 }
 .blue-day-assignment .show-info {
     background: #bbb;
 }
 .gray-border {
     border: 2px solid #444;
-    background: #fff;
 }
 .completed-button {
     width: 100%;
@@ -87,4 +107,15 @@
 .cancel-button {
     background: #333;
     color: #bbb;
+}
+.feedback-message {
+    margin-top: 20px;
+}
+.has-feedback {
+    font-weight: 600;
+}
+.assignment-group-error {
+    font-size: 10px;
+    width: 80%;
+    margin: 10px auto 0;
 }

@@ -23,9 +23,10 @@ const AssignmentCard = props => {
     const fetchSubmission = async () => {
         const fetchedSubmission = await CourseModel.getSubmission(course_id, id);
         setSubmission(fetchedSubmission.submission);
-        const pDate = new Date(fetchedSubmission.submission.posted_at);
 
+        const pDate = new Date(fetchedSubmission.submission.posted_at);
         setPostedDate(pDate);
+        
         setShowSubmission(!showSubmission);
     }
 
@@ -36,18 +37,32 @@ const AssignmentCard = props => {
 
     return (
         <div className={`assignment-card ${props.dayColor === 'gold' ? 'gold-day-assignment' : 'blue-day-assignment'}`}>
-            <p className="assignment-name"><a href={html_url.replace('canvas', 'stem')} target="_blank" rel="noreferrer">{name}</a></p>
+            <div className="assignment-name"><a href={html_url.replace('canvas', 'stem')} target="_blank" rel="noreferrer">{name}</a></div>
             {
                 showSubmission && can_access ?
-                <div className="assignment-info-container show-info gray-border" onClick={() => toggleSubmission()}>
-                    <p>{postedDate ? `Submitted on: ${postedDate.toDateString().substring(0, 3)}, ${postedDate.toDateString().substring(4)}` : 'Not submitted yet'}</p>
-                    <p>Grade: {submission.entered_score}/{points_possible}</p>
+                <div className="assignment-info-container show-info" onClick={() => toggleSubmission()}>
+                    <div className="assignment-info-groups">
+                        <div className="assignment-info-group">
+                            <div className="assignment-subheading">SUBMITTED</div>
+                            <div>{postedDate ? <><div>{postedDate.toDateString().substring(0, 3)}</div><div>{postedDate.toDateString().substring(4)}</div></> : 'Not submitted yet'}</div>
+                        </div>
+                        <div className="assignment-info-group">
+                            <div className="assignment-subheading">GRADE</div>
+                            <div>{submission.entered_score ? `${submission.entered_score}/${points_possible}` : 'Not graded yet'}</div>
+                        </div>
+                    </div>
+                    {showSubmission && submission.submission_comments.length > 0 ? <div className="feedback-message has-feedback">Check out the feedback</div> : <div className="feedback-message">You have no feedback</div> }
                 </div>
                 :
                 <div className="assignment-info-container" onClick={() => toggleSubmission()}>
                     {/* <p dangerouslySetInnerHTML={{__html: description}} /> */}
-                    <p>{dueDate ? `Due: ${dueDate.toDateString().substring(0, 3)}, ${dueDate.toDateString().substring(4)}` : 'No due date yet'}</p>
-                    <p>{points_possible ? `Points: ${points_possible}` : ''}</p>
+                    <div className="assignment-info-group">
+                        <div>{dueDate ? <><div className="assignment-info">{dueDate.toDateString().substring(0, 3)}</div><div>{dueDate.toDateString().substring(4)}</div></> : 'No due date yet'}</div>
+                    </div>
+                    <div className="assignment-info-group">
+                        <div className="assignment-info">{points_possible ? points_possible : ''}</div>
+                        <div>points</div>
+                    </div>
                     {showSubmission && !can_access ? 'Not authorized' : ''}
                 </div>
             }
@@ -56,13 +71,14 @@ const AssignmentCard = props => {
                 <button className="completed-button" onClick={() => setCompletedCheck(true)}>COMPLETED</button>
                 :
                 <>
-                <div className="confirmation-buttons-container">
-                    <div className="confirmation-message">MARK COMPLETE?</div>
-                    <button className="completed-check-button confirm-button" onClick={markComplete}>YES</button>
-                    <button className="completed-check-button cancel-button" onClick={() => setCompletedCheck(false)}>CANCEL</button>
-                </div>
+                    <div className="confirmation-buttons-container">
+                        <div className="confirmation-message">MARK COMPLETE?</div>
+                        <button className="completed-check-button confirm-button" onClick={markComplete}>YES</button>
+                        <button className="completed-check-button cancel-button" onClick={() => setCompletedCheck(false)}>CANCEL</button>
+                    </div>
                 </>
                 }
+                {can_access === 'No group found' ? <p className="assignment-group-error">Tell your handsome father that assignment group <strong>{assignment_group_id}</strong> is not in the system yet.</p> : null}
             </div>
         </div>
     );

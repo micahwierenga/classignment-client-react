@@ -1,9 +1,31 @@
 header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     font-size: 1.2vw;
     font-weight: 600;
     color: #ddd;
     background: #333;
     padding: 10px;
+}
+header a {
+    display: flex;
+    width: 36%;
+    text-decoration: none;
+    color: #ddd;
+}
+header .links {
+    width: 20%;
+}
+header .links ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+header .links ul li {
+    margin-left: 25px;
+}
+header .logout-btn {
+    cursor: pointer;
 }

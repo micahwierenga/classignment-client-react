@@ -10,8 +10,8 @@ const Courses = props => {
     const [assignments, setAssignments] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState({});
 
-    const generateBlueCourseCards = courses => courses.map(course => course.day_color === 'blue' ? <CourseCard key={course.uuid} course={course} getAssignments={getCourseAssignments} /> : '')
-    const generateGoldCourseCards = courses => courses.map(course => course.day_color === 'gold' ? <CourseCard key={course.uuid} course={course} getAssignments={getCourseAssignments} /> : '')
+    const generateBlueCourseCards = courses => courses.map(course => course.day_color === 'blue' ? <CourseCard key={course.api_id} course={course} getAssignments={getCourseAssignments} /> : '')
+    const generateGoldCourseCards = courses => courses.map(course => course.day_color === 'gold' ? <CourseCard key={course.api_id} course={course} getAssignments={getCourseAssignments} /> : '')
 
     const [showDetails, setShowDetails] = useState(false);
     const [dayColor, setDayColor] = useState('');
@@ -23,8 +23,8 @@ const Courses = props => {
             setShowDetails(!showDetails);
         } else {
             setSelectedCourse(courseObj);
-            const fetchedAssignments = await CourseModel.getAssignments(courseObj.api_id);
 
+            const fetchedAssignments = await CourseModel.getAssignments(courseObj.api_id);
             setAssignments(fetchedAssignments.fullAssignments);
             setDayColor(courseObj.day_color);
             setShowDetails(true);
@@ -33,15 +33,15 @@ const Courses = props => {
 
     return (
         <>
-        <div className='courses-container'>
-            <div className='blue-courses'>
-                {generateBlueCourseCards(props.courses)}
+            <div className='courses-container'>
+                <div className='blue-courses'>
+                    {generateBlueCourseCards(props.courses)}
+                </div>
+                <div className='gold-courses'>
+                    {generateGoldCourseCards(props.courses)}
+                </div>
             </div>
-            <div className='gold-courses'>
-                {generateGoldCourseCards(props.courses)}
-            </div>
-        </div>
-        {showDetails ? <AssignmentShow assignments={assignments} dayColor={dayColor} selectedCourse={selectedCourse} getAssignments={getCourseAssignments} /> : null}
+            {showDetails ? <AssignmentShow assignments={assignments} dayColor={dayColor} selectedCourse={selectedCourse} getAssignments={getCourseAssignments} /> : null}
         </>
     )
 }
